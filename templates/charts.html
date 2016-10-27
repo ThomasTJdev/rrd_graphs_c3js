@@ -1,0 +1,423 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap --> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
+
+<script>
+$(function () {
+
+// format: '%Y-%m-%d %H:%M:%S'
+
+// Kernel    
+var chart1 = c3.generate({
+    bindto: '#chart1',
+    renderTo: 'content',
+    data: {
+        x: 'x',
+        xFormat: '%Y-%m-%d %H:%M:%S',
+        columns: [{{ data1 | safe }}],
+        types: {
+            'user': 'area-spline',
+            'nice': 'area-spline',
+            'system': 'area-spline',
+            'Idle': 'area-spline',
+            'I/O wait': 'area-spline',
+            'IRQ': 'area-spline',
+            'softIRQ': 'area-spline',
+            'steal': 'area-spline',
+        },
+        groups: [['user', 'nice', 'system', 'I/O wait', 'IRQ', 'softIRQ', 'steal', 'Idle']],
+        hide: ['Idle'],
+
+    },
+    point: {
+        show: false
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            label: 'Timestamps',
+            tick: {
+                format: '%H:%M:%S'
+            },
+        },
+        y: {
+            label: '{{ yaxisName1 | safe }}'
+        },
+    }
+});
+
+
+// Context switches and forks
+var chart1 = c3.generate({
+    bindto: '#chart2',
+    data: {
+        x: 'x',
+        xFormat: '%Y-%m-%d %H:%M:%S',
+        columns: [{{ data2 | safe }}],
+        types: {
+            'Context switches': 'area-spline',
+            'Forks': 'area-spline',
+        },
+        groups: [['Context switches', 'Forks']],
+    },
+    point: {
+        show: false
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            label: 'Timestamps',
+            tick: {
+                format: '%H:%M:%S'
+            },
+        },
+        y: {
+            label: '{{ yaxisName2 | safe }}'
+        },
+    }
+});
+
+
+// VFS usage
+var chart3 = c3.generate({
+    bindto: '#chart3',
+    data: {
+        x: 'x',
+        xFormat: '%Y-%m-%d %H:%M:%S',
+        columns: [{{ data3 | safe }}],
+        types: {
+            'inode': 'area-spline',
+            'dentry': 'area-spline',
+            'file': 'area-spline',
+        }
+    },
+    point: {
+        show: false
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            label: 'Timestamps',
+            tick: {
+                format: '%H:%M:%S'
+            },
+        },
+        y: {
+            label: '{{ yaxisName3 | safe }}'
+        },
+    }
+});
+
+
+// IPv4 stats
+var chart4 = c3.generate({
+    bindto: '#chart4',
+    data: {
+        x: 'x',
+        xFormat: '%Y-%m-%d %H:%M:%S',
+        columns: [{{ data4 | safe }}],
+        types: {
+            'Closed': 'step',
+            'Listen': 'step',
+            'Syn_sent': 'step',
+            'Syn_recv': 'step',
+            'Established': 'step',
+            'FIN_wait1': 'step',
+            'FIN_wait2': 'step'
+        },
+    },
+    point: {
+        show: false
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            label: 'Timestamps',
+            tick: {
+                format: '%H:%M:%S'
+            },
+        },
+        y: {
+            label: '{{ yaxisName4 | safe }}',
+            min: 0
+        },
+    }
+});
+
+
+// RPi - Clock fq
+var chart5 = c3.generate({
+    bindto: '#chart5',
+    data: {
+        x: 'x',
+        xFormat: '%Y-%m-%d %H:%M:%S',
+        columns: [{{ data5 | safe }}]
+    },
+    point: {
+        show: false
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            label: 'Timestamps',
+            tick: {
+                format: '%H:%M:%S'
+            },
+        },
+        y: {
+            label: '{{ yaxisName5 | safe }}'
+        },
+    }
+});
+
+
+// RPi temperatures
+var chart6 = c3.generate({
+    bindto: '#chart6',
+    data: {
+        x: 'x',
+        xFormat: '%Y-%m-%d %H:%M:%S',
+        columns: [{{ data6 | safe }}]
+    },
+    point: {
+        show: false
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            label: 'Timestamps',
+            tick: {
+                format: '%H:%M:%S'
+            },
+        },
+        y: {
+            label: '{{ yaxisName6 | safe }}'
+        },
+    }
+});
+
+
+// RPi voltages
+var chart7 = c3.generate({
+    bindto: '#chart7',
+    data: {
+        x: 'x',
+        xFormat: '%Y-%m-%d %H:%M:%S',
+        columns: [{{ data7 | safe }}]
+    },
+    point: {
+        show: false
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            label: 'Timestamps',
+            tick: {
+                format: '%H:%M:%S'
+            },
+        },
+        y: {
+            label: '{{ yaxisName7 | safe }}'
+        },
+    }
+});
+
+
+// System load
+var chart8 = c3.generate({
+    bindto: '#chart8',
+    data: {
+        x: 'x',
+        xFormat: '%Y-%m-%d %H:%M:%S',
+        columns: [{{ data8 | safe }}],
+        types: {
+            'Load 1 min average': 'area-spline'
+        }
+    },
+    point: {
+        show: false
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            label: 'Timestamps',
+            tick: {
+                format: '%H:%M:%S'
+            },
+        },
+        y: {
+            label: '{{ yaxisName8 | safe }}'
+        },
+    }
+});
+
+
+// System memory
+var chart9 = c3.generate({
+    bindto: '#chart9',
+    data: {
+        x: 'x',
+        xFormat: '%Y-%m-%d %H:%M:%S',
+        columns: [{{ data9 | safe }}],
+        types: {
+            //'Memory total': 'line',
+            'Memory buffers': 'area-spline',
+            'Memory cached': 'area-spline',
+            'Memory free': 'area-spline',
+        },
+        groups: [['Memory buffers', 'Memory cached', 'Memory free']],
+    },
+    point: {
+        show: false
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            label: 'Timestamps',
+            tick: {
+                format: '%H:%M:%S'
+            },
+        },
+        y: {
+            label: '{{ yaxisName9 | safe }}'
+        },
+    }
+});
+
+
+// System processes
+var chart10 = c3.generate({
+    bindto: '#chart10',
+    data: {
+        x: 'x',
+        xFormat: '%Y-%m-%d %H:%M:%S',
+        columns: [{{ data10 | safe }}],
+        types: {
+            //'Memory total': 'line',
+            'Processes': 'area-spline',
+            'Processes sleeping': 'area-spline',
+            'Processes running': 'area-spline',
+        },
+    },
+    point: {
+        show: false
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            label: 'Timestamps',
+            tick: {
+                format: '%H:%M:%S'
+            },
+        },
+        y: {
+            label: '{{ yaxisName10 | safe }}'
+        },
+    }
+});
+
+
+});
+
+</script>
+
+<style>
+
+.hostname, h2 {
+    text-align: center;
+}
+
+</style>
+
+<div class="display-4 hostname">{{ hostname }} - 3 hours</div>
+
+<br>
+
+<div class="container-fluid">
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ name1 | safe }}</h2>
+            <div id="chart1"></div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ name2 | safe }}</h2>
+            <div id="chart2"></div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ name3 | safe }}</h2>
+            <div id="chart3"></div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ name4 | safe }}</h2>
+            <div id="chart4"></div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ name5 | safe }}</h2>
+            <div id="chart5"></div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ name6 | safe }}</h2>
+            <div id="chart6"></div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ name7 | safe }}</h2>
+            <div id="chart7"></div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ name8 | safe }}</h2>
+            <div id="chart8"></div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ name9 | safe }}</h2>
+            <div id="chart9"></div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ name10 | safe }}</h2>
+            <div id="chart10"></div>
+        </div>
+    </div>
+</div>
+
+<br><br>
