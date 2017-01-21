@@ -23,18 +23,18 @@ Run:
 python3 app.py
 
 Access the webserver:
-0.0.0.0:5004/1h
-0.0.0.0:5004/3h
-0.0.0.0:5004/24h
-0.0.0.0:5004/8d
-0.0.0.0:5004/charts_all
+* 0.0.0.0:5004/1h
+* 0.0.0.0:5004/3h
+* 0.0.0.0:5004/24h
+* 0.0.0.0:5004/8d
+* 0.0.0.0:5004/charts_all
 
 Update data
 -----------
 
 This is done automatically through the app.py
-cd scripts
-./rrd_executeAll_xport.sh
+* cd scripts
+* ./rrd_executeAll_xport.sh
 
 How it works
 ------------
